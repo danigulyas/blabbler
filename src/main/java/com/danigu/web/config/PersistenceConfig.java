@@ -36,7 +36,6 @@ public class PersistenceConfig {
 
 
     @Bean
-    @Profile("default")
     public DataSource dataSource() {
         BasicDataSource ds = new BasicDataSource();
 

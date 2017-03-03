@@ -24,7 +24,6 @@ import static junit.framework.TestCase.assertNull;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { EmbeddedDataSourceConfig.class, RootConfig.class, WebConfig.class })
 @WebAppConfiguration
-@ActiveProfiles("test")
 @Ignore("Base class.")
 public class BaseTest {
 
