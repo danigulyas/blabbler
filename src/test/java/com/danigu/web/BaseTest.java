@@ -1,5 +1,7 @@
 package com.danigu.web;
 
+import com.danigu.web.blab.Blab;
+import com.danigu.web.blab.BlabRepository;
 import com.danigu.web.support.EmbeddedDataSourceConfig;
 import com.danigu.web.config.RootConfig;
 import com.danigu.web.config.WebConfig;
@@ -22,13 +24,13 @@ import static junit.framework.TestCase.assertNull;
  * @author dani
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { EmbeddedDataSourceConfig.class, RootConfig.class, WebConfig.class })
+@ContextConfiguration(classes = { RootConfig.class, WebConfig.class, EmbeddedDataSourceConfig.class })
 @WebAppConfiguration
 @Ignore("Base class.")
 public class BaseTest {
 
-    @Autowired
-    protected WebApplicationContext context;
+    @Autowired protected WebApplicationContext context;
+    @Autowired protected BlabRepository blabRepository;
     protected MockMvc mockMvc;
 
     @Before
@@ -36,5 +38,13 @@ public class BaseTest {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
                 .build();
+    }
+
+    protected Blab getBlab() {
+        Blab blab = new Blab();
+
+        blab.setContent("examplecontentblab11223.");
+
+        return blabRepository.save(blab);
     }
 }
