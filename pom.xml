@@ -14,6 +14,7 @@
     <java.version>1.8</java.version>
     <spring.version>4.3.6.RELEASE</spring.version>
     <thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
+    <spring.security.version>4.2.2.RELEASE</spring.security.version>
   </properties>
 
   <dependencies>
@@ -23,6 +24,19 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${spring.version}</version>
+    </dependency>
+
+    <!-- At the time of writing this didn't have 4.3.6.RELEASE. -->
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-web</artifactId>
+      <version>${spring.security.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-config</artifactId>
+      <version>${spring.security.version}</version>
     </dependency>
 
     <dependency>
