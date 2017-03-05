@@ -26,7 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         if(user != null) {
             List<GrantedAuthority> authorities = new ArrayList();
-            authorities.add(new SimpleGrantedAuthority("ROLE_BLABBER"));
 
             return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),

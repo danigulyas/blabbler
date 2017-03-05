@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.inject.Inject;
 
@@ -23,9 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Inject
     private UserRepository repository;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(new UserDetailsServiceImpl(repository));
+    @Inject
+    protected void configureAuth(AuthenticationManagerBuilder auth, PasswordEncoder encoder) throws Exception {
+        auth.userDetailsService(new UserDetailsServiceImpl(repository)).passwordEncoder(encoder);
     }
 
     @Override
@@ -41,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

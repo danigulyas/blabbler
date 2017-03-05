@@ -4,6 +4,7 @@ import com.danigu.web.BaseTest;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -14,7 +15,7 @@ public class BlabControllerTest extends BaseTest {
 
     @Test
     public void givenAnIdWithoutABlabThenFindByBlabShouldRenderNotFound() throws Exception {
-        mockMvc.perform(get("/blab/13"))
+        mockMvc.perform(get("/blabs/13"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("404"));
     }
@@ -23,7 +24,7 @@ public class BlabControllerTest extends BaseTest {
     public void givenAnIdWithExistingBlabThenFindByIdShouldRenderTheSingleBlabPage() throws Exception {
         Blab blab = getBlab();
 
-        mockMvc.perform(get("/blab/" + blab.getId()))
+        mockMvc.perform(get("/blabs/" + blab.getId()))
                 .andExpect(status().isOk())
                 .andExpect(view().name("blab"))
                 .andExpect(model().attributeExists("blab"))
