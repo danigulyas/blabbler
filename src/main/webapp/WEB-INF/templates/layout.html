@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en"
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:sec="http://www.w3.org/1999/xhtml">
-    <head>
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head th:fragment="header">
         <meta charset="utf-8" />
         <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="/static/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet"/>
         <link href="/static/css/style.css" rel="stylesheet" type="text/css"/>
-        <title>Thymeleaf 3 + Spring 4 example</title>
+        <title>Blabbler</title>
     </head>
-    <body>
-        <div class="container">
-            Hello <button class="btn btn-large">click</button>!
-        </div>
+    <body layout:fragment="body">
+        <p>Default content.</p>
     </body>
 </html>
