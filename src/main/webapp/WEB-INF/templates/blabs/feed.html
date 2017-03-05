@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head>
+    <link href="/static/css/feed.css" rel="stylesheet" type="text/css">
+    <title>Sign up</title>
+</head>
+
+<body layout:fragment="body">
+    <div th:replace="fragments/navigation :: navigation"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-lg-offset-3 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+                <!-- TWEET WRAPPER START -->
+                <div class="twt-wrapper">
+                    <div class="panel panel-info">
+
+                        <form method="post" class="panel-heading"
+                            sec:authorize="isAuthenticated()"
+                            th:action="@{/}"
+                            th:object="${blab}">
+
+                            <textarea th:field="*{content}" class="form-control" placeholder="What's cookin?🕶️" rows="3"></textarea>
+                            <span th:each="err : ${#fields.errors('content')}" th:text="${err}" class="help-block"></span>
+                            <br />
+                            <input type="submit" class="btn btn-primary btn-sm pull-right" value="Tweet" />
+                            <div class="clearfix"></div>
+                        </form>
+
+                        <div class="panel-body">
+                            <ul class="media-list">
+                                <li th:each="blab : ${blabs}" class="media">
+                                    <a href="#" class="pull-left">
+                                        <img src="https://unsplash.it/300/300?random" alt="" class="img-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <span th:text="${blab.createdAt.toString()}" class="text-muted pull-right">
+                                            <small class="text-muted"></small>
+                                        </span>
+                                        <strong class="text-success">@<span th:text="${blab.getOwner().getUsername()}"></span></strong>
+                                        <p th:text="${blab.content}"> Blab's content. </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- TWEET WRAPPER END -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

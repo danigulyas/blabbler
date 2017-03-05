@@ -26,7 +26,7 @@ import javax.sql.DataSource;
 public class PersistenceConfig {
 
     /**
-     * TODO(dani): Move all those to application.properties.
+     * TODO(dani): Move all those to spring-data properties.
      */
     @Value("${dataSource.driver.className}") private String driverClassname;
     @Value("${dataSource.url}") private String url;

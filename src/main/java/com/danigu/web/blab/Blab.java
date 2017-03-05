@@ -1,12 +1,10 @@
 package com.danigu.web.blab;
 
-import lombok.AllArgsConstructor;
+import com.danigu.web.user.User;
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author dani
@@ -17,4 +15,7 @@ public class Blab {
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String content;
+    private Date createdAt = new Date();
+    @OneToOne(targetEntity = User.class)
+    private User owner;
 }

@@ -38,7 +38,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
             .and()
                 .formLogin()
-                    .loginPage("/login");
+                    .loginPage("/login")
+            .and()
+                .logout()
+                    .logoutUrl("/logout");
     }
 
     @Bean
