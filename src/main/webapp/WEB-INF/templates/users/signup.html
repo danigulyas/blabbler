@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layout">
+<head>
+    <link href="/static/css/login.css" rel="stylesheet" type="text/css">
+    <title>Sign up</title>
+</head>
+
+<body layout:fragment="body">
+<div class="container">
+    <div class="row">
+
+        <div class="main">
+
+            <h3>If you've already signed up, you can <a th:href="@{/login}">log in</a></a></h3>
+
+            <div th:if="${successMessage} != null" class="alert alert-success" role="alert">
+                <strong>Woohoo!</strong>
+                <p th:text="${successMessage}"></p>
+            </div>
+
+            <div th:if="${param.error} != null" class="alert alert-warning" role="alert">
+                <strong>Darn!</strong>
+                We couldn't find a user with these credentials, please try again.
+            </div>
+
+            <form name="f" method="post" role="form"
+                  th:action="@{/users/signup}"
+                  th:object="${user}">
+
+                <div class="form-group">
+                    <label th:class for="inputUsernameEmail">Username</label>
+                    <input th:field="*{username}" type="text" class="form-control" id="inputUsernameEmail">
+                    <span th:each="err : ${#fields.errors('username')}" th:text="${err}" class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input th:field="*{password}" type="password" class="form-control" id="inputPassword">
+                    <span th:each="err : ${#fields.errors('password')}" th:text="${err}" class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPasswordConfirm">Password (again)</label>
+                    <input th:field="*{passwordConfirm}" type="password" class="form-control" id="inputPasswordConfirm">
+                    <span th:each="err : ${#fields.errors('passwordConfirm')}" th:text="${err}" class="help-block"></span>
+                </div>
+
+                <button type="submit" class="btn btn btn-primary">
+                    Sign up
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

@@ -13,7 +13,7 @@ import javax.inject.Inject;
  * @author dani
  */
 @Controller
-@RequestMapping("/blab")
+@RequestMapping("/blabs")
 public class BlabController {
 
     @Inject
